@@ -2,7 +2,7 @@ const CACHE_NAME = "meu-pwa-cache-v1";
 const ASSETS = [
   "./",
   "./index.html",
-  "./icon.png"
+  "https://thiagoandradedeveloper.github.io/pwa/icon.png"
 ];
 
 // Instalação do Service Worker e cache dos arquivos
