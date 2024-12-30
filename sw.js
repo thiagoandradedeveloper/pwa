@@ -1,8 +1,9 @@
 const CACHE_NAME = "meu-pwa-cache-v1";
 const ASSETS = [
-  "/",
-  "/index.html",
-  "/icon.png",
+  "./",
+  "./index.html",
+  "./icon.png"
+  //"./offline.html" // Opcional
 ];
 
 // Instalação do Service Worker e cache dos arquivos
@@ -10,7 +11,9 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log("Cache criado e arquivos adicionados.");
-      return cache.addAll(ASSETS);
+      return cache.addAll(ASSETS).catch((error) => {
+        console.error("Erro ao adicionar arquivos ao cache:", error);
+      });
     })
   );
 });
@@ -35,11 +38,18 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Retorna o recurso do cache ou busca na rede
-      return response || fetch(event.request);
+      return (
+        response ||
+        fetch(event.request).catch(() => {
+          if (event.request.destination === "document") {
+            return caches.match("./offline.html"); // Fallback para uma página offline
+          }
+        })
+      );
     })
   );
 });
+
 
 
 /*let cacheName = 'cache-v1';
