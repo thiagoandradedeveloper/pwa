@@ -12,9 +12,6 @@
     <meta name="theme-color" content="#33ffcc"/>
     <!-- /manifest -->
 
-    <button id="install-button" style="display: none;">Instalar App</button>
-    <div class="install-banner">Instalar?</div>
-
 </head>
 <body>
     
@@ -25,31 +22,6 @@
     <script src="app.js"></script>
     <!-- /load service worker -->
 
-    <script>
-        const installButton = document.getElementById("install-button");
-        
-        if (installButton) {
-        installButton.style.display = "block";
-        installButton.addEventListener("click", () => {
-            // Mostrar o prompt de instalação
-            deferredPrompt.prompt();
 
-            // Lidar com a resposta do usuário
-            deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === "accepted") {
-                console.log("Usuário aceitou instalar o PWA");
-            } else {
-                console.log("Usuário recusou instalar o PWA");
-            }
-            deferredPrompt = null; // Limpar o prompt
-            });
-        });
-        } else {
-        console.error("O botão de instalação não foi encontrado no DOM.");
-        }
-
-        // Exibir uma mensagem em um modal ou banner
-        document.getElementById("install-banner").style.display = "block";
-    </script>
 </body>
 </html>
