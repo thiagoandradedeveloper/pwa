@@ -1,7 +1,7 @@
 const CACHE_NAME = "meu-pwa-cache-v1";
 const ASSETS = [
   "./",
-  "./index.html",
+  "./pwa/index.html",
   "./pwa/icon.png"
 ];
 
