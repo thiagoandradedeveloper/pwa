@@ -11,6 +11,9 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#33ffcc"/>
     <!-- /manifest -->
+
+    <button id="install-button" style="display: none;">Instalar App</button>
+
 </head>
 <body>
     
@@ -19,5 +22,10 @@
     <!-- load service worker -->
     <script src="app.js"></script>
     <!-- /load service worker -->
+
+    <script>
+        // Exibir uma mensagem em um modal ou banner
+        document.getElementById("install-banner").style.display = "block";
+    </script>
 </body>
 </html>
